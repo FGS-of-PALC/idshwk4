@@ -9,7 +9,7 @@ event zeek_init()
     {
     local r1 = SumStats::Reducer($stream="dns.lookup", $apply=set(SumStats::UNIQUE));
     SumStats::create([$name="dns.requests.unique",
-                      $epoch=20sec,
+                      $epoch=10min,
                       $reducers=set(r1),
                       $epoch_result(ts: time, key: SumStats::Key, result: SumStats::Result) =
                         {
